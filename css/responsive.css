@@ -9,9 +9,14 @@
     /* 3. LAYOUT CHUNG */
     .dashboard-grid { grid-template-columns: 1fr; gap: 15px; }
 
+/* --- FIX LỖI BỊ CHE NỘI DUNG --- */
     .content-scroll-area { 
-        /* Nav height (~70px) + Safe Area (~20px) + Khoảng hở thêm (50px) */
-        padding: 0 15px 140px 15px !important; 
+        /* Padding: Top - Right - Bottom - Left */
+        /* Tăng Bottom lên 160px để né hoàn toàn Navbar và nút tròn ở giữa */
+        padding: 0 15px 160px 15px !important; 
+        
+        /* Đảm bảo thanh cuộn mượt mà trên iOS */
+        -webkit-overflow-scrolling: touch; 
     }
     
     /* --- SỬA LỖI STATS ROW (QUAN TRỌNG) --- */
