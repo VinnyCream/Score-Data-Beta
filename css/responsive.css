@@ -1,0 +1,78 @@
+/* RESPONSIVE OVERRIDES - LOAD LAST */
+@media (max-width: 768px) {
+    /* 1. HIDE DESKTOP SIDEBAR */
+    .sidebar { display: none !important; }
+    
+    /* 2. FORCE SHOW MOBILE NAV */
+    .mobile-nav { display: flex !important; } 
+
+    /* 3. LAYOUT CHUNG */
+    .dashboard-grid { grid-template-columns: 1fr; gap: 15px; }
+    
+    /* --- SỬA LỖI STATS ROW (QUAN TRỌNG) --- */
+    .stats-row { 
+        /* Ép buộc hiển thị 3 cột trên 1 hàng */
+        grid-template-columns: repeat(3, 1fr) !important; 
+        gap: 10px !important; /* Khoảng cách giữa các thẻ nhỏ lại */
+    }
+
+    /* Tinh chỉnh thẻ con bên trong */
+    .stat-item {
+        flex-direction: column !important; /* Icon nằm trên, số nằm dưới */
+        align-items: center !important;
+        text-align: center !important;
+        padding: 15px 5px !important; /* Giảm padding để đỡ tốn chỗ */
+        gap: 5px !important;
+    }
+
+    .icon-box {
+        width: 38px !important; /* Icon nhỏ lại chút */
+        height: 38px !important;
+        font-size: 20px !important;
+        margin-bottom: 2px;
+    }
+
+    .stat-info {
+        align-items: center !important;
+    }
+
+    .stat-num {
+        font-size: 1.4rem !important; /* Số nhỏ lại cho vừa khung */
+        line-height: 1.2;
+    }
+
+    .stat-desc {
+        font-size: 0.75rem !important; /* Chữ chú thích nhỏ lại */
+        white-space: nowrap; /* Không cho xuống dòng */
+    }
+    /* -------------------------------------- */
+
+    .form-row { grid-template-columns: 1fr; } 
+    
+    /* HEADER & TEXT */
+    .top-header { padding: 15px 20px; }
+    .header-welcome h2 { font-size: 1.3rem; }
+    .profile-avatar-container { width: 42px; height: 42px; }
+    
+    .gpa-value { font-size: 3rem !important; } 
+    .gpa-scale { font-size: 1rem; }
+    
+    /* PADDING CHO NỘI DUNG KHÔNG BỊ MENU CHE */
+    .content-scroll-area { 
+        padding: 0 15px calc(var(--nav-height) + var(--safe-area-bot) + 30px) 15px !important; 
+    }
+    
+    .card { padding: 20px; }
+    .search-box { width: 100%; }
+
+    /* SETTINGS COMPACT */
+    .settings-container { gap: 16px; }
+    .setting-card.card { padding: 6px 0 !important; }
+    .setting-item { padding: 12px 16px !important; gap: 12px; }
+    .setting-icon { width: 36px !important; height: 36px !important; border-radius: 10px !important; font-size: 1.1rem; }
+    .setting-label { font-size: 0.95rem; }
+    .setting-desc { font-size: 0.8rem; margin-top: 0; }
+    .switch { transform: scale(0.9); margin-left: auto; }
+    .divider-line { margin: 0 16px !important; opacity: 0.6; }
+}
+

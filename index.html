@@ -14,20 +14,18 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body data-theme="dark"> 
     <div id="intro-layer">
         <div class="intro-content">
-            <div class="code-icon">
-                <span class="material-symbols-rounded">terminal</span>
-            </div>
+            <div class="code-icon"><span class="material-symbols-rounded">terminal</span></div>
             <div class="typing-container">
                 <span id="typing-text"></span><span class="cursor">|</span>
             </div>
-            <div class="loading-bar-container">
-                <div class="loading-bar-fill"></div>
-            </div>
+            <div class="loading-bar-container"><div class="loading-bar-fill"></div></div>
             <p class="intro-version">Made by @VinnyCream | Github</p>
         </div>
     </div>
@@ -42,30 +40,24 @@
             </div>
             <div class="nav-menu">
                 <button class="nav-item active" data-target="dashboard">
-                    <span class="material-symbols-rounded">dashboard</span>
-                    <span>Tổng quan</span>
+                    <span class="material-symbols-rounded">dashboard</span><span>Tổng quan</span>
                 </button>
                 <button class="nav-item" data-target="calculator">
-                    <span class="material-symbols-rounded">calculate</span>
-                    <span>Tính điểm</span>
+                    <span class="material-symbols-rounded">calculate</span><span>Tính điểm</span>
                 </button>
                 <button class="nav-item" data-target="history">
-                    <span class="material-symbols-rounded">history</span>
-                    <span>Lịch sử</span>
+                    <span class="material-symbols-rounded">history</span><span>Lịch sử</span>
                 </button>
                 <button class="nav-item" data-target="analytics">
-                    <span class="material-symbols-rounded">monitoring</span>
-                    <span>Phân tích</span>
+                    <span class="material-symbols-rounded">monitoring</span><span>Phân tích</span>
                 </button>
                 <button class="nav-item" data-target="settings">
-                    <span class="material-symbols-rounded">tune</span>
-                    <span>Cài đặt</span>
+                    <span class="material-symbols-rounded">tune</span><span>Cài đặt</span>
                 </button>
             </div>
             <div class="sidebar-footer">
                 <button class="theme-btn" id="theme-toggle">
-                    <span class="material-symbols-rounded">dark_mode</span>
-                    <span>Giao diện</span>
+                    <span class="material-symbols-rounded">dark_mode</span><span>Giao diện</span>
                 </button>
             </div>
         </aside>
@@ -85,62 +77,76 @@
             </header>
 
             <div class="content-scroll-area">
-                <section id="dashboard" class="page active">
-                    <div class="dashboard-grid">
-                        <div class="card glass-card gradient-card main-stats-card">
-                            <div class="card-inner">
-                                <div class="stats-left">
-                                    <span class="card-label">GPA Tích Lũy</span>
-                                    <div class="gpa-wrapper">
-                                        <span class="gpa-value" id="dash-gpa-4">0.00</span>
-                                        <span class="gpa-scale">/4.0</span>
-                                    </div>
-                                    <div class="rank-badge" id="gpa-rank">--</div>
-                                </div>
-                                <div class="stats-right">
-                                    <div class="circular-chart">
-                                        <svg viewBox="0 0 36 36" class="circular-chart-svg">
-                                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                            <path class="circle" id="gpa-circle-stroke" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                        </svg>
-                                        <div class="percent-text" id="gpa-percent">0%</div>
-                                    </div>
-                                </div>
-                            </div>
+    
+    <section id="dashboard" class="page active">
+        <div class="profile-hero">
+            <div class="avatar-glow-container">
+                <div class="glow-ring"></div>
+                <img src="https://ui-avatars.com/api/?name=User&background=random" id="hero-avatar" alt="Avatar">
+                <div class="level-badge" id="hero-level-badge">Lv.1</div>
+            </div>
+            <h2 class="hero-name" id="hero-name">Sinh viên</h2>
+            <p class="hero-level-text" id="hero-level-text">Level 1 (Tân sinh viên)</p>
+            <div class="hero-title-box">
+                <span id="hero-title">Danh hiệu: Chưa xếp hạng</span>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card glass-card gradient-card main-stats-card">
+                <div class="card-inner">
+                    <div class="stats-left">
+                        <span class="card-label">GPA Tích Lũy</span>
+                        <div class="gpa-wrapper">
+                            <span class="gpa-value" id="dash-gpa-4">0.00</span>
+                            <span class="gpa-scale">/4.0</span>
                         </div>
-                        <div class="stats-row">
-                            <div class="card glass-card stat-item">
-                                <div class="icon-box green"><span class="material-symbols-rounded">check_circle</span></div>
-                                <div class="stat-info">
-                                    <span class="stat-num" id="dash-pass">0</span>
-                                    <span class="stat-desc">Đã đậu</span>
-                                </div>
-                            </div>
-                            <div class="card glass-card stat-item">
-                                <div class="icon-box red"><span class="material-symbols-rounded">warning</span></div>
-                                <div class="stat-info">
-                                    <span class="stat-num" id="dash-fail">0</span>
-                                    <span class="stat-desc">Học lại</span>
-                                </div>
-                            </div>
-                            <div class="card glass-card stat-item">
-                                <div class="icon-box blue"><span class="material-symbols-rounded">school</span></div>
-                                <div class="stat-info">
-                                    <span class="stat-num" id="dash-credits">0</span>
-                                    <span class="stat-desc">Tín chỉ</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card glass-card chart-section">
-                            <div class="card-head">
-                                <h3>Phân bố điểm số</h3>
-                            </div>
-                            <div class="chart-box">
-                                <canvas id="dashboardChart"></canvas>
-                            </div>
+                        <div class="rank-badge" id="gpa-rank">--</div>
+                    </div>
+                    <div class="stats-right">
+                        <div class="circular-chart">
+                            <svg viewBox="0 0 36 36" class="circular-chart-svg">
+                                <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="circle" id="gpa-circle-stroke" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            </svg>
+                            <div class="percent-text" id="gpa-percent">0%</div>
                         </div>
                     </div>
-                </section>
+                </div>
+            </div>
+
+            <div class="stats-row">
+    <div class="card stat-item">
+        <div class="icon-box green-bg"><span class="material-symbols-rounded">check_circle</span></div>
+        <div class="stat-info">
+            <span class="stat-num" id="dash-pass">0</span>
+            <span class="stat-desc">Đã đậu</span>
+        </div>
+    </div>
+    <div class="card stat-item">
+        <div class="icon-box red-bg"><span class="material-symbols-rounded">warning</span></div>
+        <div class="stat-info">
+            <span class="stat-num" id="dash-fail">0</span>
+            <span class="stat-desc">Học lại</span>
+        </div>
+    </div>
+    <div class="card stat-item">
+        <div class="icon-box blue-bg"><span class="material-symbols-rounded">school</span></div>
+        <div class="stat-info">
+            <span class="stat-num" id="dash-credits">0</span>
+            <span class="stat-desc">Tín chỉ</span>
+        </div>
+    </div>
+</div>
+
+            <div class="card glass-card chart-section">
+                <div class="card-head"><h3>Phân bố điểm số</h3></div>
+                <div class="chart-box">
+                    <canvas id="dashboardChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
 
                 <section id="calculator" class="page">
                     <h2 class="page-title">Tính điểm môn học</h2>
@@ -169,12 +175,8 @@
                             <div class="divider"><span>Nhập điểm thành phần</span></div>
                             <div id="dynamic-scores" class="score-grid"></div>
                             <div class="action-buttons">
-                                <button class="btn btn-primary" id="btn-calc">
-                                    <span class="material-symbols-rounded">calculate</span> Tính Ngay
-                                </button>
-                                <button class="btn btn-secondary" id="btn-reset-calc">
-                                    <span class="material-symbols-rounded">restart_alt</span>
-                                </button>
+                                <button class="btn btn-primary" id="btn-calc"><span class="material-symbols-rounded">calculate</span> Tính Ngay</button>
+                                <button class="btn btn-secondary" id="btn-reset-calc"><span class="material-symbols-rounded">restart_alt</span></button>
                             </div>
                         </div>
                     </div>
@@ -188,7 +190,6 @@
                             <input type="text" id="search-history" placeholder="Tìm môn học...">
                         </div>
                     </div>
-
                     <div id="history-breadcrumb" class="breadcrumb" style="display: none;">
                         <span class="crumb-item" onclick="App.History.goRoot()">
                             <span class="material-symbols-rounded">home</span> Home
@@ -196,46 +197,27 @@
                         <span class="material-symbols-rounded" style="font-size:16px;">chevron_right</span>
                         <span class="crumb-active" id="crumb-folder-name">Folder Name</span>
                     </div>
-
                     <div class="filter-tabs">
                         <button class="tab active" data-filter="all">Tất cả</button>
                         <button class="tab" data-filter="pass">Đã qua</button>
                         <button class="tab" data-filter="fail">Rớt môn</button>
                     </div>
-
                     <div id="history-actions" class="history-actions-bar hidden">
                         <span class="material-symbols-rounded" style="color:var(--primary)">check_box</span>
                         <span id="select-count" class="selection-count">0 đã chọn</span>
-                        <button class="btn-small" onclick="App.History.createFolderFromSelection()">
-                             <span class="material-symbols-rounded" style="font-size:18px; margin-right:4px">create_new_folder</span> Nhóm
-                        </button>
-                         <button class="btn-text" style="color:var(--danger)" onclick="App.History.deleteSelected()">
-                            <span class="material-symbols-rounded">delete</span>
-                        </button>
-                         <button class="btn-text" onclick="App.History.toggleSelectionMode()">
-                            <span class="material-symbols-rounded">close</span>
-                        </button>
+                        <button class="btn-small" onclick="App.History.createFolderFromSelection()"><span class="material-symbols-rounded" style="font-size:18px; margin-right:4px">create_new_folder</span> Nhóm</button>
+                        <button class="btn-text" style="color:var(--danger)" onclick="App.History.deleteSelected()"><span class="material-symbols-rounded">delete</span></button>
+                        <button class="btn-text" onclick="App.History.toggleSelectionMode()"><span class="material-symbols-rounded">close</span></button>
                     </div>
-
                     <div style="display:flex; justify-content:flex-end; margin-bottom:10px;" id="select-trigger-container">
-                        <button class="btn-text" onclick="App.History.toggleSelectionMode()">
-                            <span class="material-symbols-rounded" style="font-size:18px; margin-right:4px;">checklist</span> Chọn nhiều
-                        </button>
-                        <button class="btn-text" onclick="App.History.createNewFolderEmpty()" style="margin-left:10px;">
-                            <span class="material-symbols-rounded" style="font-size:18px; margin-right:4px;">folder_open</span> Tạo Folder
-                        </button>
+                        <button class="btn-text" onclick="App.History.toggleSelectionMode()"><span class="material-symbols-rounded" style="font-size:18px; margin-right:4px;">checklist</span> Chọn nhiều</button>
+                        <button class="btn-text" onclick="App.History.createNewFolderEmpty()" style="margin-left:10px;"><span class="material-symbols-rounded" style="font-size:18px; margin-right:4px;">folder_open</span> Tạo Folder</button>
                     </div>
-                    
                     <div id="history-list" class="history-list-view"></div>
-
                     <div class="pagination-container" id="pagination-controls">
-                        <button class="page-btn" id="prev-page" onclick="App.History.changePage(-1)">
-                            <span class="material-symbols-rounded">chevron_left</span>
-                        </button>
+                        <button class="page-btn" id="prev-page" onclick="App.History.changePage(-1)"><span class="material-symbols-rounded">chevron_left</span></button>
                         <div class="page-info" id="page-info">1 / 1</div>
-                        <button class="page-btn" id="next-page" onclick="App.History.changePage(1)">
-                            <span class="material-symbols-rounded">chevron_right</span>
-                        </button>
+                        <button class="page-btn" id="next-page" onclick="App.History.changePage(1)"><span class="material-symbols-rounded">chevron_right</span></button>
                     </div>
                 </section>
 
@@ -243,10 +225,7 @@
                     <h2 class="page-title">Phân tích chuyên sâu</h2>
                     <div class="analytics-grid">
                         <div class="card glass-card full-span">
-                            <div class="card-head">
-                                <span class="material-symbols-rounded icon-head">flag</span>
-                                <h3>Mục tiêu GPA</h3>
-                            </div>
+                            <div class="card-head"><span class="material-symbols-rounded icon-head">flag</span><h3>Mục tiêu GPA</h3></div>
                             <div class="goal-wrapper">
                                 <div class="goal-input-group">
                                     <input type="number" id="goal-gpa" placeholder="3.6" step="0.1">
@@ -264,12 +243,8 @@
                             <div class="stat-big-val text-primary" id="insight-best-subject" style="font-size: 1.2rem;">---</div>
                         </div>
                         <div class="card glass-card full-span">
-                            <div class="card-head">
-                                <h3>Biểu đồ năng lực (Radar)</h3>
-                            </div>
-                            <div class="chart-box" style="height: 300px;">
-                                <canvas id="radarChart"></canvas>
-                            </div>
+                            <div class="card-head"><h3>Biểu đồ năng lực (Radar)</h3></div>
+                            <div class="chart-box" style="height: 300px;"><canvas id="radarChart"></canvas></div>
                         </div>
                     </div>
                 </section>
@@ -281,33 +256,21 @@
                         <div class="card glass-card setting-card">
                             <div class="setting-item" onclick="App.editName()">
                                 <div class="setting-icon bg-blue"><span class="material-symbols-rounded">badge</span></div>
-                                <div class="setting-content">
-                                    <div class="setting-label">Tên hiển thị</div>
-                                    <div class="setting-desc">Tên gọi thân mật của bạn</div>
-                                </div>
+                                <div class="setting-content"><div class="setting-label">Tên hiển thị</div><div class="setting-desc">Tên gọi thân mật của bạn</div></div>
                                 <span class="material-symbols-rounded arrow-icon">chevron_right</span>
                             </div>
                             <div class="divider-line"></div>
                             <div class="setting-item" id="mobile-theme-trigger">
                                 <div class="setting-icon bg-purple"><span class="material-symbols-rounded">dark_mode</span></div>
-                                <div class="setting-content">
-                                    <div class="setting-label">Chế độ tối</div>
-                                    <div class="setting-desc">Giao diện Dark Mode</div>
-                                </div>
-                                <label class="switch">
-                                    <input type="checkbox" id="theme-switch-input">
-                                    <span class="slider round"></span>
-                                </label>
+                                <div class="setting-content"><div class="setting-label">Chế độ tối</div><div class="setting-desc">Giao diện Dark Mode</div></div>
+                                <label class="switch"><input type="checkbox" id="theme-switch-input"><span class="slider round"></span></label>
                             </div>
                         </div>
                         <div class="setting-group-title">Học vụ</div>
                         <div class="card glass-card setting-card">
                             <div class="setting-item">
                                 <div class="setting-icon bg-green"><span class="material-symbols-rounded">gavel</span></div>
-                                <div class="setting-content">
-                                    <div class="setting-label">Quy chế tính điểm</div>
-                                    <div class="setting-desc">Chọn thang điểm trường bạn</div>
-                                </div>
+                                <div class="setting-content"><div class="setting-label">Quy chế tính điểm</div><div class="setting-desc">Chọn thang điểm trường bạn</div></div>
                                 <select id="setting-scale" class="setting-select" onchange="App.saveSettings()">
                                     <option value="HUFLIT">HUFLIT</option>
                                     <option value="HUIT">HUIT</option>
@@ -319,35 +282,23 @@
                         <div class="card glass-card setting-card">
                             <div class="setting-item" onclick="App.exportData()">
                                 <div class="setting-icon bg-orange"><span class="material-symbols-rounded">cloud_download</span></div>
-                                <div class="setting-content">
-                                    <div class="setting-label">Sao lưu dữ liệu</div>
-                                    <div class="setting-desc">Tải về file .json</div>
-                                </div>
+                                <div class="setting-content"><div class="setting-label">Sao lưu dữ liệu</div><div class="setting-desc">Tải về file .json</div></div>
                                 <span class="material-symbols-rounded arrow-icon">chevron_right</span>
                             </div>
                             <div class="divider-line"></div>
                             <div class="setting-item" onclick="document.getElementById('import-file').click()">
                                 <div class="setting-icon bg-teal"><span class="material-symbols-rounded">cloud_upload</span></div>
-                                <div class="setting-content">
-                                    <div class="setting-label">Khôi phục dữ liệu</div>
-                                    <div class="setting-desc">Nhập từ file backup</div>
-                                </div>
+                                <div class="setting-content"><div class="setting-label">Khôi phục dữ liệu</div><div class="setting-desc">Nhập từ file backup</div></div>
                                 <span class="material-symbols-rounded arrow-icon">chevron_right</span>
                             </div>
                             <div class="divider-line"></div>
                             <div class="setting-item text-danger" onclick="App.clearData()">
                                 <div class="setting-icon bg-red"><span class="material-symbols-rounded">delete_forever</span></div>
-                                <div class="setting-content">
-                                    <div class="setting-label text-danger">Xóa toàn bộ</div>
-                                    <div class="setting-desc">Hành động không thể hoàn tác</div>
-                                </div>
+                                <div class="setting-content"><div class="setting-label text-danger">Xóa toàn bộ</div><div class="setting-desc">Hành động không thể hoàn tác</div></div>
                             </div>
                             <input type="file" id="import-file" hidden accept=".json">
                         </div>
-                        <div class="app-info-footer">
-                            <p>Score Data v1.2</p>
-                            <p>Thiết kế dành cho sinh viên</p>
-                        </div>
+                        <div class="app-info-footer"><p>Score Data v1.3 Mobile Fix</p><p>Thiết kế dành cho sinh viên</p></div>
                     </div>
                 </section>
             </div>
@@ -355,43 +306,31 @@
 
         <nav class="mobile-nav">
             <button class="m-nav-item active" data-target="dashboard">
-                <span class="material-symbols-rounded">dashboard</span>
-                <span class="m-label">Home</span>
+                <span class="material-symbols-rounded">dashboard</span><span class="m-label">Home</span>
             </button>
             <button class="m-nav-item" data-target="calculator">
-                <span class="material-symbols-rounded">calculate</span>
-                <span class="m-label">Tính</span>
+                <span class="material-symbols-rounded">calculate</span><span class="m-label">Tính</span>
             </button>
              <button class="m-nav-item center-fab" onclick="App.goToCalc()">
                 <span class="material-symbols-rounded">add</span>
             </button>
             <button class="m-nav-item" data-target="history">
-                <span class="material-symbols-rounded">history</span>
-                <span class="m-label">Lịch sử</span>
+                <span class="material-symbols-rounded">history</span><span class="m-label">Lịch sử</span>
             </button>
             <button class="m-nav-item" data-target="settings">
-                <span class="material-symbols-rounded">tune</span>
-                <span class="m-label">Cài đặt</span>
+                <span class="material-symbols-rounded">tune</span><span class="m-label">Cài đặt</span>
             </button>
         </nav>
     </div>
 
     <dialog id="result-modal" class="custom-modal">
         <div class="modal-body">
-            <div class="modal-icon-header">
-                <span class="material-symbols-rounded">school</span>
-            </div>
+            <div class="modal-icon-header"><span class="material-symbols-rounded">school</span></div>
             <h3 id="res-subject">Kết quả</h3>
             <div class="grade-circle" id="res-grade">A</div>
             <div class="score-details">
-                <div class="score-item">
-                    <span>Hệ 10</span>
-                    <b id="res-10">0.0</b>
-                </div>
-                <div class="score-item">
-                    <span>Hệ 4</span>
-                    <b id="res-4">0.0</b>
-                </div>
+                <div class="score-item"><span>Hệ 10</span><b id="res-10">0.0</b></div>
+                <div class="score-item"><span>Hệ 4</span><b id="res-4">0.0</b></div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-text" onclick="document.getElementById('result-modal').close()">Đóng</button>
@@ -399,7 +338,6 @@
             </div>
         </div>
     </dialog>
-
     <div id="crop-modal-overlay" class="modal-overlay hidden">
         <div class="crop-modal">
             <div class="crop-header">
@@ -407,9 +345,7 @@
                 <button class="btn-icon" onclick="App.Profile.closeModal()"><span class="material-symbols-rounded">close</span></button>
             </div>
             <div class="crop-body">
-                <div class="img-container-crop">
-                    <img id="image-to-crop" src="">
-                </div>
+                <div class="img-container-crop"><img id="image-to-crop" src=""></div>
                 <div class="crop-controls">
                     <button class="btn-icon-small" onclick="App.Profile.cropper.rotate(-90)"><span class="material-symbols-rounded">rotate_left</span></button>
                     <button class="btn-icon-small" onclick="App.Profile.cropper.rotate(90)"><span class="material-symbols-rounded">rotate_right</span></button>
@@ -417,15 +353,14 @@
                 </div>
             </div>
             <div class="crop-footer">
-                <button class="btn btn-secondary" onclick="App.Profile.triggerUpload()">
-                    <span class="material-symbols-rounded">upload</span> Chọn lại
-                </button>
+                <button class="btn btn-secondary" onclick="App.Profile.triggerUpload()"><span class="material-symbols-rounded">upload</span> Chọn lại</button>
                 <button class="btn btn-primary" onclick="App.Profile.saveImage()">Lưu ảnh</button>
             </div>
         </div>
     </div>
 
     <script src="js/core.js"></script>
+    <script src="js/modules.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
