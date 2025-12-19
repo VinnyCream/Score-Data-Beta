@@ -153,9 +153,90 @@ const AnalyticsModule = {
 
 const ProfileModule = {
     cropper: null,
-    triggerUpload() { document.getElementById('file-upload').click(); },
-    openModal() { document.getElementById('crop-modal-overlay').classList.remove('hidden'); },
-    closeModal() { document.getElementById('crop-modal-overlay').classList.add('hidden'); if(this.cropper) { this.cropper.destroy(); this.cropper = null; } document.getElementById('file-upload').value = ''; },
-    handleFileSelect(e) { const file = e.target.files[0]; if(!file) return; if(file.type === 'image/gif') { const reader = new FileReader(); reader.onload = (evt) => { if(evt.target.result.length > 3000000) return alert("File GIF quá lớn (>3MB)."); DB.data.user.avatar = evt.target.result; DB.save(); App.updateAvatars(evt.target.result); App.Profile.closeModal(); }; reader.readAsDataURL(file); } else { const reader = new FileReader(); reader.onload = (evt) => { const img = document.getElementById('image-to-crop'); img.src = evt.target.result; App.Profile.openModal(); if(App.Profile.cropper) App.Profile.cropper.destroy(); App.Profile.cropper = new Cropper(img, { aspectRatio: 1, viewMode: 1, autoCropArea: 0.8 }); }; reader.readAsDataURL(file); } },
-    saveImage() { if(!this.cropper) return; const canvas = this.cropper.getCroppedCanvas({ width: 200, height: 200 }); const base64 = canvas.toDataURL('image/webp', 0.85); DB.data.user.avatar = base64; DB.save(); App.updateAvatars(base64); this.closeModal(); }
+    
+    // Kích hoạt input file ẩn
+    triggerUpload() { 
+        document.getElementById('file-upload').click(); 
+    },
+
+    // Mở modal: Bỏ class hidden
+    openModal() { 
+        const overlay = document.getElementById('crop-modal-overlay');
+        overlay.classList.remove('hidden'); 
+    },
+
+    // Đóng modal: Thêm class hidden và dọn dẹp Cropper
+    closeModal() { 
+        const overlay = document.getElementById('crop-modal-overlay');
+        overlay.classList.add('hidden'); 
+        
+        if(this.cropper) { 
+            this.cropper.destroy(); 
+            this.cropper = null; 
+        } 
+        // Reset input để có thể chọn lại cùng 1 file nếu hủy
+        document.getElementById('file-upload').value = ''; 
+    },
+
+    handleFileSelect(e) { 
+        const file = e.target.files[0]; 
+        if(!file) return; 
+
+        // Nếu là GIF: Lưu thẳng (vì thư viện crop không hỗ trợ crop ảnh động tốt)
+        if(file.type === 'image/gif') { 
+            const reader = new FileReader(); 
+            reader.onload = (evt) => { 
+                if(evt.target.result.length > 3000000) return alert("File GIF quá lớn (>3MB)."); 
+                DB.data.user.avatar = evt.target.result; 
+                DB.save(); 
+                App.updateAvatars(evt.target.result); 
+                // Không cần mở modal
+            }; 
+            reader.readAsDataURL(file); 
+        } else { 
+            // Nếu là ảnh tĩnh (JPG, PNG): Mở modal Crop
+            const reader = new FileReader(); 
+            reader.onload = (evt) => { 
+                const img = document.getElementById('image-to-crop');
+                img.src = evt.target.result; 
+                
+                App.Profile.openModal(); // Hiển thị modal trước
+                
+                // Khởi tạo Cropper sau khi ảnh đã load vào src
+                if(App.Profile.cropper) App.Profile.cropper.destroy(); 
+                
+                // Đợi 1 chút để DOM cập nhật modal hiển thị
+                setTimeout(() => {
+                    App.Profile.cropper = new Cropper(img, { 
+                        aspectRatio: 1, 
+                        viewMode: 1, 
+                        autoCropArea: 0.9,
+                        dragMode: 'move',
+                        guides: false
+                    }); 
+                }, 100);
+            }; 
+            reader.readAsDataURL(file); 
+        } 
+    },
+
+    saveImage() { 
+        if(!this.cropper) return; 
+        // Lấy ảnh đã crop
+        const canvas = this.cropper.getCroppedCanvas({ 
+            width: 300, 
+            height: 300,
+            imageSmoothingEnabled: true,
+            imageSmoothingQuality: 'high'
+        }); 
+        
+        // Chuyển sang base64
+        const base64 = canvas.toDataURL('image/webp', 0.9); 
+        
+        // Lưu và cập nhật
+        DB.data.user.avatar = base64; 
+        DB.save(); 
+        App.updateAvatars(base64); 
+        this.closeModal(); 
+    }
 };

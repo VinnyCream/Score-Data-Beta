@@ -8,6 +8,11 @@
 
     /* 3. LAYOUT CHUNG */
     .dashboard-grid { grid-template-columns: 1fr; gap: 15px; }
+
+    .content-scroll-area { 
+        /* Nav height (~70px) + Safe Area (~20px) + Khoảng hở thêm (50px) */
+        padding: 0 15px 140px 15px !important; 
+    }
     
     /* --- SỬA LỖI STATS ROW (QUAN TRỌNG) --- */
     .stats-row { 
